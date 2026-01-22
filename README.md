@@ -15,7 +15,7 @@ As a proof of concept it'll get the maps dimensions, bank balance and loan amoun
 
 1 shot with OpenAI:
 
-![A circulair architecture](https:///images.jplattel.nl/obsidian/image.png)
+![A circulair architecture](https://files.jplattel.nl/2026/01/PWlJvx.png)
 
 ## Example screenhot
 
