@@ -1,9 +1,15 @@
 import subprocess
+import shutil
 import os
 
 class OpenTTD:
     def __init__(self):
         self.openttd_path_executable_path = os.getenv("OPEN_TTD_PATH_EXECUTABLE_PATH")
+        self.openttd_path_data_path = os.getenv("OPEN_TTD_PATH_DATA_PATH")
+        
+        # Symlink the OpenTTDLLM to <openttd_data_folder>/ai/OpenTTDLLM
+        shutil.copytree(os.path.join(os.path.dirname(__file__), "..", "OpenTTDLLM"), os.path.join(self.openttd_path_data_path, "ai", "OpenTTDLLM"), dirs_exist_ok=True)
+        
         self.process = None
         self.running = False
         self.log_file = open(os.getenv("OPEN_TTD_LOG_FILE"), "w")
