@@ -1,6 +1,6 @@
 # OpenTTD & LLM
 
-Use an LLM to drive an OpenTTD AI. (More on my personal blog) 
+Use an LLM to drive an OpenTTD AI. ([More on my personal blog](https://jplattel.nl/post/llm-plays-openttd/)) 
 
 ## Getting started
 
