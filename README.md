@@ -5,9 +5,10 @@ Use an LLM to drive an OpenTTD AI. ([More on my personal blog](https://jplattel.
 ## Getting started
 
 1.  Install dependencies with `uv sync`
-2.  Symlink the OpenTTDLLM to <openttd_data_folder>/ai/OpenTTDLLM
-3.  Startup OpenTTD and the LLM interface: `uv run main.py`
-4.  Start the AI through the in-game console with `start_ai OpenTTDLLM`
+2.  Add the right `.env` vars (check `.env.example`)
+3.  Symlink the OpenTTDLLM to <openttd_data_folder>/ai/OpenTTDLLM
+4.  Startup OpenTTD and the LLM interface: `uv run main.py`
+5.  Start the AI through the in-game console with `start_ai OpenTTDLLM`
 
 As a proof of concept it'll get the maps dimensions, bank balance and loan amount... It ain't building something (yet!) 
 
