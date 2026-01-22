@@ -10,6 +10,7 @@ dependencies = [
     "anthropic>=0.18",
     "ollama>=0.1",
     "terminology>=1.0.16",
+    "python-dotenv>=1.2.1",
 ]
 
 [project.optional-dependencies]

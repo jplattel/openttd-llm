@@ -2,14 +2,15 @@
 """
 Main entry point for the OpenTTD LLM Agent
 """
+import os
 import time
 import threading
 from terminology import in_red, in_green, in_yellow, in_blue
 
 class LogParser:
-    def __init__(self, log_file, state):
-        self.log_file = open(log_file, "r")
+    def __init__(self, state):
         self.state = state
+        self.log_file_path = os.getenv("OPEN_TTD_LOG_FILE")
         self.running = True
         self.log_thread = threading.Thread(target=self._tail_log_file)
         self.log_thread.daemon = True
@@ -18,7 +19,7 @@ class LogParser:
     def _tail_log_file(self):
         """Tail the log file and print lines"""
         try:
-            with open("openttd.log", "r") as f:
+            with open(self.log_file_path, "r") as f:
                 # Go to end of file
                 f.seek(0, 2)
                 while self.running:
@@ -33,14 +34,15 @@ class LogParser:
             print(in_red(f"Error tailing log file: {e}"))
             
     def parse_log_line(self, line):
-        if 'OpenTTDLLM <' in line:
             # Incoming data to OpenTTD
+        if 'OpenTTDLLM <' in line:
             line = line.split("OpenTTDLLM <")[1].strip()
-            print("🗺️ <" + in_yellow(line))
+            print("🗺️ < " + in_yellow(line))
+        
+        # Outgoing data from OpenTTD
         if 'OpenTTDLLM >' in line:
-            # Outgoing data from OpenTTD
             line = line.split("OpenTTDLLM >")[1].strip()
-            print(in_green(f"🗺️ > {line}"))
+            print("🗺️ > " + in_green(line))
             
             timestamp, command, result = line.split('|')
             print(in_blue(f"⚙️ Parsed command: {command}, result: {result}"))

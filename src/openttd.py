@@ -1,18 +1,19 @@
 import subprocess
-
+import os
 
 class OpenTTD:
-    def __init__(self, log_file):
+    def __init__(self):
+        self.openttd_path_executable_path = os.getenv("OPEN_TTD_PATH_EXECUTABLE_PATH")
         self.process = None
         self.running = False
-        self.log_file = open(log_file, "w")
+        self.log_file = open(os.getenv("OPEN_TTD_LOG_FILE"), "w")
         self.start_openttd()
         
         
     def start_openttd(self):
         # Start OpenTTD process with output redirected to file
         self.process = subprocess.Popen(
-            ["/Applications/OpenTTD.app/Contents/MacOS/openttd", "-g", "-d", "4"], 
+            [self.openttd_path_executable_path, "-g", "-d", "4"], 
             stdout=self.log_file,
             stderr=subprocess.STDOUT
         )

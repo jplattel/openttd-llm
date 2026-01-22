@@ -7,12 +7,13 @@ from src.log_parser import LogParser
 from src.state import State
 from src.llm import LLM
 
-OPEN_TTD_LOG_FILE = "openttd.log"
+# Load environment variables from .env file
+from dotenv import load_dotenv; load_dotenv()
 
 def main():
     state = State()
-    openttd = OpenTTD(OPEN_TTD_LOG_FILE)
-    log_parser = LogParser(OPEN_TTD_LOG_FILE, state)
+    openttd = OpenTTD()
+    log_parser = LogParser(state)
     llm = LLM(state)
     
     try:
